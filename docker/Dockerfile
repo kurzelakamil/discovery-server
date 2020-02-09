@@ -13,5 +13,9 @@ ARG JAR_FILE=discovery-server.jar
 # Add the application's jar to the container
 ADD ${JAR_FILE} discovery-server.jar
 
+ADD run.sh run.sh
+
 # Run the jar file
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/discovery-server.jar"]
+RUN apt-get update && apt-get install -y netcat
+RUN chmod +x run.sh
+CMD /bin/sh run.sh
