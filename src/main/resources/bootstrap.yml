@@ -3,4 +3,4 @@ spring:
     name: discovery-server
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: https://betting-app-config-server.herokuapp.com/

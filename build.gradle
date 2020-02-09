@@ -27,3 +27,12 @@ dependencyManagement {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
 }
+
+task copyJarToDockerPackage(type: Copy, dependsOn: bootJar){
+    from "./build/libs"
+    into 'docker'
+    include ("discovery-server-${version}.jar")
+    rename ("discovery-server-${version}.jar", "discovery-server.jar")
+}
+
+build.dependsOn copyJarToDockerPackage
